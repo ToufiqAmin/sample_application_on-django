@@ -1,0 +1,111 @@
+    {%extends 'baseTemplate.html'%}
+
+    {%block start%}
+
+    <div class="container mt-3">
+        <h5 class="container-fluid text-center" style="margin: 30px;">Search Box</h5>
+        <form action="/search/" method="GET">
+            <div class="row" style="padding: 30px;">
+                <div class="col">
+                    
+                    <!-- <label for="row_number">Choose a Number of Rows:</label>                  
+                    <select id="row_number" name="row_number" value="{{formData.row_number}}">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select> -->
+                   
+ 
+                    <a href="/configuration_page/" name="configuration_page" >Configuration Page</a>
+                
+                    
+                    <input class="form-control" type="text" name="searchItems" placeholder='Search Here'><br>
+                    <input class="btn btn-primary" type="submit" value="Search">
+                </div>
+            </div>
+        </form> 
+    </div>
+
+    <div class="container mt-3">
+
+
+        <h2>Search Results</h2>
+        <table class="table table-striped">
+            <tr>
+              <th>BLOCK</th>
+              <th>USI_CODE</th>
+              <th>REGION</th>
+              <th>LENGTH_KM</th>
+              <th>ACQUISITION_YEAR</th>
+              <th>PROCESSING_YEAR</th>
+            </tr>
+            
+            {% for data in myData %}
+            <tr>
+              <td>{{data.block}}</td>
+              <td>{{data.usi_code}}</td>
+              <td>{{data.region}}</td>
+              <td>{{data.length_km}}</td>
+              <td>{{data.acquisition_year}}</td>
+              <td>{{data.processing_year}}</td>
+            </tr>
+            
+            {% endfor %}
+
+        </table>
+
+        
+        <nav aria-label="...">
+            <ul class="pagination">
+                {% if myData.has_previous %}
+                <li class="page-item ">
+                <a class="page-link" href="/search/?page={{myData.previous_page_number}}" tabindex="-1">Previous</a>
+                </li>
+                {% endif %}
+
+                <!-- <li class="page-item"><a class="page-link" href="/search/?page=1">1</a></li>
+                <li class="page-item active" aria-current="page">
+                <a class="page-link" href="/search/?page=2">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="/search/?page=3">3</a></li> -->
+
+                <li class="page-item">
+                    <a class="page-link" >
+                    {{ myData.number }} of {{ myData.paginator.num_pages }}
+                    </a>
+                </li>
+                
+                {% if myData.has_next %}
+                <li class="page-item">
+                <a class="page-link" href="/search/?page={{myData.next_page_number}}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <!-- <div class="pagination">
+            <span class="step-links">
+                {% if myData.has_previous %}
+
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ myData.previous_page_number }}">previous</a>
+                    
+                {% endif %}
+                    <span class="current">
+                        Page {{ myData.number }} of {{ myData.paginator.num_pages }}.
+                    </span>
+        
+                {% if myData.has_next %}
+                    <a href="?page={{ myData.next_page_number }}">next</a>
+                    <a href="?page={{ myData.paginator.num_pages }}">last &raquo;</a>
+                    
+                {% endif %}
+            </span>
+        </div> -->
+        
+        
+    </div>
+
+    {% endblock%}

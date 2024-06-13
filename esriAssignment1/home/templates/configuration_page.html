@@ -1,0 +1,45 @@
+{%extends 'baseTemplate.html'%}
+
+{%block start%}
+<div class="container mt-3">
+    <form class="container-fluid text-center" style="margin: 30px;" action="/home/" method="GET">
+        <div>
+            <label for="row_number">Choose a Number of Rows:</label>                  
+            <select id="row_number" name="row_number">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+        
+
+        <!-- <div>
+
+            <label for="page">Choose a Number of Page:</label>
+            <select id="page" name="page">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+
+            -->
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div> 
+        
+        
+    </form>
+
+</div>
+
+
+
+{% endblock%}
